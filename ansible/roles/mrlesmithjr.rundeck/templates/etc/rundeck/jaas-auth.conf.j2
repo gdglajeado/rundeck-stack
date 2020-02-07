@@ -1,0 +1,29 @@
+authentication {
+
+    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule sufficient
+      debug="{{ 'true' if rundeck_auth_ldap_debug else 'false' }}"
+      contextFactory="{{ rundeck_auth_ldap_contextFactory }}"
+      providerUrl="{{ rundeck_auth_ldap_providerUrl }}"
+      authenticationMethod="{{ rundeck_auth_ldap_authenticationMethod }}"
+      forceBindingLogin="{{ 'true' if rundeck_auth_ldap_forceBindingLogin else 'false' }}"
+      forceBindingLoginUseRootContextForRoles="{{ 'true' if rundeck_auth_ldap_forceBindingLoginUseRootContextForRoles else 'false' }}"
+      bindDn="{{ rundeck_auth_ldap_bindDn }}"
+      bindPassword="{{ rundeck_auth_ldap_bindPassword }}"
+      userBaseDn="{{ rundeck_auth_ldap_userBaseDn }}"
+      userRdnAttribute="{{ rundeck_auth_ldap_userRdnAttribute }}"
+      userIdAttribute="{{ rundeck_auth_ldap_userIdAttribute }}"
+      userObjectClass="{{ rundeck_auth_ldap_userObjectClass }}"
+      roleBaseDn="{{ rundeck_auth_ldap_roleBaseDn }}"
+      roleNameAttribute="{{ rundeck_auth_ldap_roleNameAttribute }}"
+      roleMemberAttribute="{{ rundeck_auth_ldap_roleMemberAttribute }}"
+      roleObjectClass="{{ rundeck_auth_ldap_roleObjectClass }}"
+      supplementalRoles="{{ rundeck_auth_ldap_supplementalRoles }}"
+      cacheDurationMillis="{{ rundeck_auth_ldap_cacheDurationMillis }}"
+      reportStatistics="{{ 'true' if rundeck_auth_ldap_reportStatistics else 'false' }}"
+      nestedGroups="{{ 'true' if rundeck_auth_ldap_nestedGroups else 'false' }}";
+
+    org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
+      debug="true"
+      file="{{ rundeck_root_dir }}/realm.properties";
+
+};

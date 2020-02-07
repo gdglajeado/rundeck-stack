@@ -1,0 +1,7 @@
+---
+- name: Installs Rundeck
+  hosts: all
+  become: true
+  roles:
+    - role: ansible-rundeck
+  tasks:

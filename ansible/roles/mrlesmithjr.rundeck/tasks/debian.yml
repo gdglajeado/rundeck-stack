@@ -1,0 +1,51 @@
+---
+- name: debian | updating apt-cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+  become: true
+
+- name: debian | installing pre-reqs for rundeck
+  apt:
+    name:
+      - apt-transport-https
+      - openjdk-8-jre-headless
+    state: present
+  become: true
+  register: result
+  until: result is successful
+
+- name: debian | installing pre-reqs for ansible
+  apt:
+    name:
+      - python-pip
+      - python-dev
+      - software-properties-common
+      - gcc
+      - libyaml-dev
+      - libpython2.7-dev
+      - libffi-dev
+      - libssl-dev
+    state: present
+  become: true
+  when:
+    - rundeck_install_ansible is defined
+    - rundeck_install_ansible
+  register: result
+  until: result is successful
+
+- name: debian | installing rundeck
+  apt:
+    deb: "{{ rundeck_pkg_install }}"
+    state: present
+  become: true
+  register: result
+  until: result is successful
+
+- name: debian | installing ansible
+  pip:
+    name: ansible
+    state: present
+    version: "{{ rundeck_install_ansible_version }}"
+  become: true
+  when: rundeck_install_ansible

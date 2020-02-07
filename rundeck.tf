@@ -1,3 +1,6 @@
+#export GOOGLE_CLOUD_KEYFILE_JSON="/home/rafael/.google/gdglajeado/gdglajeado-fe9cf4f9e588.json"
+
+
 module "network" {
   source = "./../../tf-modules/gcp-network"
 

@@ -1,0 +1,6 @@
+---
+- hosts: rundeck
+  user: rafael
+  become: yes
+  roles:
+    - mrlesmithjr.rundeck
