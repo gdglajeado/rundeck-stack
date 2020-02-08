@@ -1,5 +1,5 @@
 ---
-- hosts: rundeck
+- hosts: "{{ target }}"
   user: rafael
   become: yes
   roles:

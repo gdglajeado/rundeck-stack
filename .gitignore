@@ -2,4 +2,5 @@
 *.tfstate*
 *ssh*
 *.ansible*
+roles
 *.pem
